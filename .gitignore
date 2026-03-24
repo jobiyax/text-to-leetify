@@ -1,0 +1,15 @@
+# Fichiers temporaires
+*.tmp
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE / éditeurs
+.vscode/
+.idea/
+
+# Clés & secrets
+*.key
+*.pem
