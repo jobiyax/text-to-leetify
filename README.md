@@ -1,5 +1,3 @@
-# 💻 Pass Forge
-
 # 🔐 Pass Forge
 
 > Générateur de mots de passe sécurisé en Bash ⚙️
