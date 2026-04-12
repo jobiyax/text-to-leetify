@@ -65,3 +65,36 @@ password="$(LC_ALL=C tr -dc "$charset" </dev/urandom | head -c "$length" || true
 echo ""
 echo "🔑 Mot de passe généré : $password"
 echo ""
+
+read -r -p "💾 Sauvegarder dans le coffre ? (y/n) : " save
+
+if [[ "$save" == "y" ]]; then
+
+	# Dossier de stockage sécurisé
+	VAULT_DIR="${VAULT_DIR:-$SCRIPT_DIR/vault}"
+	mkdir -p "$VAULT_DIR"
+
+	# Nom de fichier par défaut
+	FILE_NAME="passwords.txt"
+
+	read -r -p "👉 Nom du fichier (default: passwords.txt) : " custom_file
+
+	# Si l'utilisateur donne un nom
+	if [[ -n "${custom_file:-}" ]]; then
+		FILE_NAME="$custom_file"
+	fi
+
+	# Eviter nom vide + espaces
+	FILE_NAME="${FILE_NAME// /_}"
+	FILE_NAME="${FILE_NAME:-passwords.txt}"
+
+	# Chemin final
+	FILE_PATH="$VAULT_DIR/$FILE_NAME"
+
+	# Sauvegarde
+	echo "$password" >>"$FILE_PATH"
+
+	echo "✅ Mot de passe sauvegardé dans : $FILE_PATH"
+fi
+
+echo ""

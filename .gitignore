@@ -1,0 +1,15 @@
+# Dossier des mots de passe
+vault/
+
+# Logs éventuels
+*.log
+
+# Fichiers temporaires
+*.tmp
+
+# Swap files (vim/nano)
+*.swp
+
+# Système
+.DS_Store
+Thumbs.db
