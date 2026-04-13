@@ -31,16 +31,30 @@ echo "📦 Gestion du coffre :"
 echo "1) 📂 Lister"
 echo "2) 🔎 Rechercher"
 echo "3) 📖 Lire un fichier"
-echo "0) Quitter"
+echo "0) 🔐 Générer un mot de passe"
 
 read -r -p "👉 Choix : " choice
 
 case "$choice" in
-1) list_vault ;;
-2) search_vault ;;
-3) read_vault ;;
-0) echo "👋 Bye" ;;
-*) echo "❌ Choix invalide" ;;
+1)
+	list_vault
+	exit 0
+	;;
+2)
+	search_vault
+	exit 0
+	;;
+3)
+	read_vault
+	exit 0
+	;;
+0)
+	# Continuer vers la génération
+	;;
+*)
+	echo "❌ Choix invalide"
+	exit 1
+	;;
 esac
 
 # Vérification des variables importées
