@@ -13,6 +13,10 @@ echo ""
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CONFIG_FILE="$SCRIPT_DIR/charset.conf"
 
+# shellcheck source=./vault.sh
+# shellcheck disable=SC1091
+source "$SCRIPT_DIR/vault.sh"
+
 if [[ ! -f "$CONFIG_FILE" ]]; then
 	echo "❌ Fichier de configuration introuvable : $CONFIG_FILE"
 	exit 1
@@ -21,6 +25,23 @@ fi
 # shellcheck source=./charset.conf
 # shellcheck disable=SC1091
 source "$CONFIG_FILE"
+
+echo ""
+echo "📦 Gestion du coffre :"
+echo "1) 📂 Lister"
+echo "2) 🔎 Rechercher"
+echo "3) 📖 Lire un fichier"
+echo "0) Quitter"
+
+read -r -p "👉 Choix : " choice
+
+case "$choice" in
+1) list_vault ;;
+2) search_vault ;;
+3) read_vault ;;
+0) echo "👋 Bye" ;;
+*) echo "❌ Choix invalide" ;;
+esac
 
 # Vérification des variables importées
 : "${LOWERCASE:?}"
@@ -64,6 +85,19 @@ password="$(LC_ALL=C tr -dc "$charset" </dev/urandom | head -c "$length" || true
 
 echo ""
 echo "🔑 Mot de passe généré : $password"
+
+# Analyse de force
+strength="FAIBLE"
+
+if [[ "$length" -ge 12 ]]; then
+	strength="MOYEN"
+fi
+
+if [[ "$length" -ge 16 && "$upper" == "y" && "$numbers" == "y" && "$symbols" == "y" ]]; then
+	strength="FORT"
+fi
+
+echo "📊 Niveau de sécurité : $strength"
 echo ""
 
 read -r -p "💾 Sauvegarder dans le coffre ? (y/n) : " save
