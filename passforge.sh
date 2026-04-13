@@ -13,6 +13,10 @@ echo ""
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CONFIG_FILE="$SCRIPT_DIR/charset.conf"
 
+# shellcheck source=./vault.sh
+# shellcheck disable=SC1091
+source "$SCRIPT_DIR/vault.sh"
+
 if [[ ! -f "$CONFIG_FILE" ]]; then
 	echo "❌ Fichier de configuration introuvable : $CONFIG_FILE"
 	exit 1
@@ -21,6 +25,37 @@ fi
 # shellcheck source=./charset.conf
 # shellcheck disable=SC1091
 source "$CONFIG_FILE"
+
+echo ""
+echo "📦 Gestion du coffre :"
+echo "1) 📂 Lister"
+echo "2) 🔎 Rechercher"
+echo "3) 📖 Lire un fichier"
+echo "0) 🔐 Générer un mot de passe"
+
+read -r -p "👉 Choix : " choice
+
+case "$choice" in
+1)
+	list_vault
+	exit 0
+	;;
+2)
+	search_vault
+	exit 0
+	;;
+3)
+	read_vault
+	exit 0
+	;;
+0)
+	# Continuer vers la génération
+	;;
+*)
+	echo "❌ Choix invalide"
+	exit 1
+	;;
+esac
 
 # Vérification des variables importées
 : "${LOWERCASE:?}"
