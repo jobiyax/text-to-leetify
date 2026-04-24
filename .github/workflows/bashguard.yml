@@ -1,0 +1,35 @@
+name: BashGuard CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest # runner Linux
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4 # récupère le code
+
+      # Installer outils bash
+      - name: Install tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y shellcheck
+          sudo apt-get install -y shfmt
+
+      # Vérifie la syntaxe bash
+      - name: Bash syntax check
+        run: |
+          find . -name "*.sh" -exec bash -n {} \;
+
+      # Analyse qualité avec shellcheck
+      - name: ShellCheck analysis
+        run: |
+          find . -name "*.sh" -exec shellcheck {} \;
+
+      # Vérifie le format sans modifier
+      - name: Check formatting
+        run: |
+          find . -name "*.sh" -exec shfmt -d {} \;
