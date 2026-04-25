@@ -26,30 +26,33 @@ fi
 # shellcheck disable=SC1091
 source "$CONFIG_FILE"
 
-echo ""
-echo "📦 Gestion du coffre :"
-echo "1) 📂 Lister"
-echo "2) 🔎 Rechercher"
-echo "3) 📖 Lire un fichier"
-echo "0) 🔐 Générer un mot de passe"
-
+echo "📦 Menu :"
+echo "1) 🔐 Générer un mot de passe"
+echo "2) 📂 Lister"
+echo "3) 🔎 Rechercher"
+echo "4) 📖 Lire un fichier"
+echo "5) ❌ Quitter"
 read -r -p "👉 Choix : " choice
 
 case "$choice" in
 1)
+	# Continuer vers la génération
+	;;
+2)
 	list_vault
 	exit 0
 	;;
-2)
+3)
 	search_vault
 	exit 0
 	;;
-3)
+4)
 	read_vault
 	exit 0
 	;;
-0)
-	# Continuer vers la génération
+5)
+	echo "👋 Au revoir"
+	exit 0
 	;;
 *)
 	echo "❌ Choix invalide"
