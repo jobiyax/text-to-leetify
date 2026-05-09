@@ -1,0 +1,30 @@
+name: Code Quality
+
+# Workflow sur chaque push et pull request
+on:
+  push:
+  pull_request:
+
+jobs:
+  quality:
+    # Machine Linux utilisée par GitHub
+    runs-on: ubuntu-latest
+
+    # Autorise uniquement la lecture du repo
+    permissions:
+      contents: read
+
+    steps:
+      # Récupère le code du projet
+      - name: Checkout project
+        uses: actions/checkout@v5
+
+      # Installe Biome
+      - name: Setup Biome
+        uses: biomejs/setup-biome@v2
+        with:
+          version: latest
+
+      # Vérifie le formatage et les règles du projet
+      - name: Run Biome
+        run: biome ci .

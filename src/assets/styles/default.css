@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+/* Déclare la police personnalisée */
+@font-face {
+	font-family: "AfacadFlux";
+	font-style: normal;
+	font-weight: 100;
+	font-display: swap;
+	src: url("../fonts/AfacadFlux.woff2") format("woff2");
+}
+
+/* Police globale du site */
+body {
+	font-family: "AfacadFlux", sans-serif;
+	font-weight: 400;
+}
