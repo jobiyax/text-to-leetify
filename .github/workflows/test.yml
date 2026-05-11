@@ -1,0 +1,28 @@
+name: Run Tests
+
+# Workflow sur chaque push et pull request
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    # Machine Linux utilisée par GitHub
+    runs-on: ubuntu-latest
+
+    steps:
+      # Récupère le code du projet
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Installe Bun
+      - name: Install bun
+        uses: oven-sh/setup-bun@v2
+
+      # Installe les dépendances du projet
+      - name: Install dependencies
+        run: bun install
+
+      # Exécute les tests
+      - name: Run testss
+        run: bun test
