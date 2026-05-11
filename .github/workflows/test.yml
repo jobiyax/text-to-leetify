@@ -10,6 +10,9 @@ jobs:
     # Machine Linux utilisée par GitHub
     runs-on: ubuntu-latest
 
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL || '' }}
+
     steps:
       # Récupère le code du projet
       - name: Checkout
