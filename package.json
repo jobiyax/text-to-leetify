@@ -5,14 +5,14 @@
 	"private": true,
 	"scripts": {
 		"dev": "bun --hot server",
-		"build": "bun run build.ts",
+		"build": "bun run scripts/build.ts",
 		"preview": "bun server",
 		"start": "NODE_ENV=production bun server",
 		"format": "biome format --write .",
 		"lint": "biome lint --write .",
 		"check": "biome check --write .",
 		"generate": "bunx drizzle-kit generate",
-		"migrate": "bun run server/migrate.ts"
+		"migrate": "bun run scripts/migrate.ts"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.4.15",
