@@ -10,6 +10,10 @@ export function AddTeamForm() {
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 		await addTeam(name, logoUrl);
+
+		// Reset des inputs après validation
+		setName("");
+		setLogoUrl("");
 	};
 
 	return (
