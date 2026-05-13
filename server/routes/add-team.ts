@@ -8,36 +8,56 @@ type TeamBody = {
 
 export async function addTeam(req: Request) {
 	try {
-		const { name, logoUrl } = (await req.json()) as TeamBody;
+		const body = (await req.json()) as TeamBody;
 
-		// Validation
+		const name = body.name?.trim();
+		const logoUrl = body.logoUrl?.trim();
+
+		// Validation minimale
 		if (!name) {
-			return Response.json({ error: "Nom requis" }, { status: 400 });
+			return Response.json(
+				{
+					error: "Le nom est requis",
+				},
+				{
+					status: 400,
+				},
+			);
 		}
 
-		// Création
+		// Insertion
 		const [newTeam] = await db
 			.insert(team)
 			.values({
 				name,
 				logoUrl,
 			})
-			.returning();
+			.returning({
+				id: team.id,
+				name: team.name,
+				logoUrl: team.logoUrl,
+				createdAt: team.createdAt,
+			});
 
-		// Réponse
 		return Response.json(
 			{
-				message: "Équipe créée",
+				message: "Équipe créée avec succès",
 				team: newTeam,
 			},
-			{ status: 201 },
+			{
+				status: 201,
+			},
 		);
-	} catch {
+	} catch (error) {
+		console.error("ADD_TEAM_ERROR:", error);
+
 		return Response.json(
 			{
-				error: "Erreur serveur",
+				error: "Erreur interne du serveur",
 			},
-			{ status: 500 },
+			{
+				status: 500,
+			},
 		);
 	}
 }
