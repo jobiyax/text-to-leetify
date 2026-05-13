@@ -1,4 +1,6 @@
-export default function Home() {
+import { AddTeamForm } from "./components/AddTeamForm";
+
+export default function App() {
 	return (
 		<div>
 			<h1>BaleLive ⚽</h1>
@@ -6,6 +8,7 @@ export default function Home() {
 				Plateforme simple de gestion du football local en République
 				Démocratique du Congo
 			</p>
+			<AddTeamForm />
 		</div>
 	);
 }
