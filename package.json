@@ -10,7 +10,9 @@
 		"start": "NODE_ENV=production bun server",
 		"format": "biome format --write .",
 		"lint": "biome lint --write .",
-		"check": "biome check --write ."
+		"check": "biome check --write .",
+		"generate": "bunx drizzle-kit generate",
+		"migrate": "bun run server/migrate.ts"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.4.15",
