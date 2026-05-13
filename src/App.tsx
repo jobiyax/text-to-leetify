@@ -1,4 +1,5 @@
 import { AddTeamForm } from "./components/AddTeamForm";
+import { TeamsList } from "./components/TeamsList";
 
 export default function App() {
 	return (
@@ -9,6 +10,7 @@ export default function App() {
 				Démocratique du Congo
 			</p>
 			<AddTeamForm />
+			<TeamsList />
 		</div>
 	);
 }
