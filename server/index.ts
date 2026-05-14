@@ -1,15 +1,13 @@
 import { serve } from "bun";
 import homepage from "../public/index.html";
-import { addTeam } from "./routes/add-team";
-import { getTeams } from "./routes/get-team";
+import { teamRoute } from "./routes/team";
+import { teamsRoute } from "./routes/teams";
 
 const server = serve({
 	routes: {
-		"/api/add-team": {
-			POST: addTeam,
-		},
-		"/api/get-teams": {
-			GET: getTeams,
+		"/api/teams": {
+			POST: teamRoute,
+			GET: teamsRoute,
 		},
 
 		"/*": homepage, // sert le frontend

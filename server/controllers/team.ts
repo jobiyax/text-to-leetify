@@ -1,23 +1,19 @@
-import { db } from "../db";
+import { db } from "../config/db";
 import { team } from "../schemas/team";
+import { createTeamSchema } from "../validators/team";
 
-type TeamBody = {
-	name: string;
-	logoUrl?: string;
-};
-
-export async function addTeam(req: Request) {
+export async function createTeam(req: Request) {
 	try {
-		const body = (await req.json()) as TeamBody;
+		const body: unknown = await req.json();
 
-		const name = body.name?.trim();
-		const logoUrl = body.logoUrl?.trim();
+		// Validation Zod
+		const result = createTeamSchema.safeParse(body);
 
-		// Validation minimale
-		if (!name) {
+		if (!result.success) {
 			return Response.json(
 				{
-					error: "Le nom est requis",
+					error: "Validation échouée",
+					details: result.error.flatten(),
 				},
 				{
 					status: 400,
@@ -25,7 +21,9 @@ export async function addTeam(req: Request) {
 			);
 		}
 
-		// Insertion
+		const { name, logoUrl } = result.data;
+
+		// Insertion DB
 		const [newTeam] = await db
 			.insert(team)
 			.values({
@@ -41,7 +39,7 @@ export async function addTeam(req: Request) {
 
 		return Response.json(
 			{
-				message: "Équipe créée avec succès",
+				message: "Équipe créée",
 				team: newTeam,
 			},
 			{
@@ -49,11 +47,11 @@ export async function addTeam(req: Request) {
 			},
 		);
 	} catch (error) {
-		console.error("ADD_TEAM_ERROR:", error);
+		console.error("CREATE_TEAM_ERROR", error);
 
 		return Response.json(
 			{
-				error: "Erreur interne du serveur",
+				error: "Erreur serveur",
 			},
 			{
 				status: 500,

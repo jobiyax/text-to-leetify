@@ -1,24 +1,20 @@
 import { desc } from "drizzle-orm";
 
-import { db } from "../db";
+import { db } from "../config/db";
 import { team } from "../schemas/team";
 
 export async function getTeams() {
 	try {
+		// Dernières équipes créées
 		const teams = await db
 			.select({
-				// Colonnes nécessaires uniquement
 				id: team.id,
 				name: team.name,
 				logoUrl: team.logoUrl,
 				createdAt: team.createdAt,
 			})
 			.from(team)
-
-			// Optimisé avec l'index created_at
 			.orderBy(desc(team.createdAt))
-
-			// Limite les données retournées
 			.limit(20);
 
 		return Response.json(
@@ -30,12 +26,11 @@ export async function getTeams() {
 			},
 		);
 	} catch (error) {
-		// Log serveur
-		console.error("GET_TEAMS_ERROR:", error);
+		console.error("GET_TEAMS_ERROR", error);
 
 		return Response.json(
 			{
-				error: "Internal server error",
+				error: "Erreur serveur",
 			},
 			{
 				status: 500,

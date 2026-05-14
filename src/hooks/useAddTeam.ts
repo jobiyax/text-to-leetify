@@ -35,7 +35,7 @@ export function useAddTeam() {
 			}
 
 			// Appel API vers ton backend Bun
-			const res = await fetch("/api/add-team", {
+			const res = await fetch("/api/teams", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",

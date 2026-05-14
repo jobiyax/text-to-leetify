@@ -24,7 +24,7 @@ export function useTeams() {
 		const fetchTeams = async () => {
 			try {
 				// Appel API GET
-				const res = await fetch("/api/get-teams");
+				const res = await fetch("/api/teams");
 
 				const json = await res.json();
 
