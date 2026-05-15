@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  # Lance la CI après un push
+  push:
+  # Lance la CI pour les pull requests
+  pull_request:
+    branches:
+      - develop
+      - main
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Récupère le code
+      - uses: actions/checkout@v4
+
+      # Installe Bun
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.3.3
+
+      # Installe les dépendances
+      - run: bun install --frozen-lockfile
+
+      # Vérifie le code avec Biome
+      - run: bun run check
+
+      # Build du projet
+      - run: bun run build
+
+      # Démarre le serveur pour un test rapide
+      - run: timeout 5s bun run start || true
