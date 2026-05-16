@@ -17,13 +17,15 @@
 		"@biomejs/biome": "2.4.15",
 		"@types/bun": "^1.3.14",
 		"@types/react": "^19.2.14",
-		"@types/react-dom": "^19.2.3"
+		"@types/react-dom": "^19.2.3",
+		"drizzle-kit": "^0.31.10"
 	},
 	"peerDependencies": {
 		"typescript": "^5"
 	},
 	"dependencies": {
 		"bun-plugin-tailwind": "^0.1.2",
+		"drizzle-orm": "^0.45.2",
 		"react": "^19.2.6",
 		"react-dom": "^19.2.6",
 		"tailwindcss": "^4.3.0"

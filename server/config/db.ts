@@ -1,4 +1,5 @@
 import { SQL } from "bun";
+import { drizzle } from "drizzle-orm/bun-sql";
 
 const databaseUrl = process.env.DATABASE_URL;
 
@@ -25,4 +26,6 @@ export const sql = new SQL({
 	prepare: true,
 });
 
-export default sql;
+export const db = drizzle(sql);
+
+export default db;
