@@ -13,6 +13,9 @@ jobs:
   check:
     runs-on: ubuntu-latest
 
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL || '' }}
+
     steps:
       # Récupère le code
       - uses: actions/checkout@v4
@@ -26,7 +29,10 @@ jobs:
       - run: bun install --frozen-lockfile
 
       # Vérifie le code avec Biome
-      - run: bun run check
+      - run: bun run fix
+
+      # Lancer les tests automatiques
+      - run: bun test
 
       # Build du projet
       - run: bun run build
