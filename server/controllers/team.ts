@@ -47,3 +47,39 @@ export async function createTeam(request: Request): Promise<Response> {
 		);
 	}
 }
+
+// GET teams (liste)
+export async function getTeams(): Promise<Response> {
+	try {
+		// Récupération des équipes
+		const teams = await db
+			.select({
+				id: team.id,
+				name: team.name,
+				logoUrl: team.logoUrl,
+			})
+			.from(team)
+			.orderBy(team.name);
+
+		// Conversion BigInt en String
+		const safeTeams = teams.map((t) => ({
+			...t,
+			id: t.id.toString(),
+		}));
+
+		return Response.json({
+			success: true,
+			data: safeTeams,
+		});
+	} catch (error) {
+		console.error(error);
+
+		return Response.json(
+			{
+				success: false,
+				message: "Erreur serveur",
+			},
+			{ status: 500 },
+		);
+	}
+}
