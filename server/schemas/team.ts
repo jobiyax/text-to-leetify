@@ -1,28 +1,25 @@
 import {
 	bigserial,
-	index,
 	pgTable,
 	text,
 	timestamp,
 	varchar,
 } from "drizzle-orm/pg-core";
 
-export const team = pgTable(
-	"team",
-	{
-		id: bigserial("id", {
-			mode: "bigint",
-		}).primaryKey(),
+export const team = pgTable("team", {
+	id: bigserial("id", {
+		mode: "bigint",
+	}).primaryKey(),
 
-		name: varchar("name", {
-			length: 255,
-		}).notNull(),
+	name: varchar("name", {
+		length: 255,
+	})
+		.notNull()
+		.unique(),
 
-		logoUrl: text("logo_url"),
+	logoUrl: text("logo_url"),
 
-		createdAt: timestamp("created_at", {
-			withTimezone: true,
-		}).defaultNow(),
-	},
-	(table) => [index("idx_team_name").on(table.name)],
-);
+	createdAt: timestamp("created_at", {
+		withTimezone: true,
+	}).defaultNow(),
+});
