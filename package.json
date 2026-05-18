@@ -1,0 +1,32 @@
+{
+	"name": "bale-live",
+	"module": "index.ts",
+	"type": "module",
+	"private": true,
+	"scripts": {
+		"help": "bun run scripts/build.ts --help",
+		"dev": "bun --hot server",
+		"build": "bun run scripts/build.ts",
+		"start": "NODE_ENV=production bun server",
+		"format": "biome format --write .",
+		"lint": "biome lint --write .",
+		"check": "biome check --write .",
+		"fix": "biome check . --write --unsafe"
+	},
+
+	"devDependencies": {
+		"@biomejs/biome": "2.4.15",
+		"@types/bun": "latest"
+	},
+	"peerDependencies": {
+		"typescript": "^5"
+	},
+	"dependencies": {
+		"@types/react": "^19.2.14",
+		"@types/react-dom": "^19.2.3",
+		"bun-plugin-tailwind": "^0.1.2",
+		"react": "^19.2.6",
+		"react-dom": "^19.2.6",
+		"tailwindcss": "^4.3.0"
+	}
+}
