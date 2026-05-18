@@ -1,6 +1,7 @@
 import { SQL } from "bun";
+import { drizzle } from "drizzle-orm/bun-sql";
 
-export const sql = new SQL({
+export const client = new SQL({
 	url: process.env.DATABASE_URL || "",
 
 	// Nombre maximum de connexions simultanées
@@ -19,4 +20,6 @@ export const sql = new SQL({
 	prepare: true,
 });
 
-export default sql;
+export const db = drizzle(client);
+
+export default db;
