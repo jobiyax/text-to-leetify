@@ -1,3 +1,4 @@
+import { asc } from "drizzle-orm";
 import db from "../../config/db";
 import { team } from "../../schemas/team";
 import { type CreateTeamInput, createTeamSchema } from "./team.validator";
@@ -62,6 +63,51 @@ export const createTeamHandler = async (req: Request): Promise<Response> => {
 			},
 			{
 				status: 201,
+			},
+		);
+	} catch (error) {
+		console.error(error);
+
+		return Response.json(
+			{
+				success: false,
+				message: "Erreur serveur",
+			},
+			{
+				status: 500,
+			},
+		);
+	}
+};
+
+// Récupère toutes les équipes
+export const getTeamsHandler = async (): Promise<Response> => {
+	try {
+		// Liste des équipes
+		const teams = await db
+			.select({
+				id: team.id,
+				name: team.name,
+				logoUrl: team.logoUrl,
+				createdAt: team.createdAt,
+			})
+			.from(team)
+
+			// Trie par nom
+			.orderBy(asc(team.name))
+
+			// Pagination simple
+			.limit(10)
+			.offset(0);
+
+		// Succès
+		return Response.json(
+			{
+				success: true,
+				data: teams,
+			},
+			{
+				status: 200,
 			},
 		);
 	} catch (error) {
