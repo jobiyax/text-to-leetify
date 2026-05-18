@@ -12,7 +12,7 @@
 		"lint": "biome lint --write .",
 		"check": "biome check --write .",
 		"fix": "biome check . --write --unsafe",
-		"megerate": "bunx drizzle-kit generate",
+		"generate": "bunx drizzle-kit generate",
 		"migrate": "bunx drizzle-kit migrate"
 	},
 	"devDependencies": {
