@@ -1,13 +1,7 @@
 import { SQL } from "bun";
 
-const databaseUrl = process.env.DATABASE_URL;
-
-if (!databaseUrl) {
-	throw new Error("DATABASE_URL manque");
-}
-
 export const sql = new SQL({
-	url: databaseUrl,
+	url: process.env.DATABASE_URL || "",
 
 	// Nombre maximum de connexions simultanées
 	max: 20,
