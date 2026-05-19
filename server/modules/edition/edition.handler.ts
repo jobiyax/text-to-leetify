@@ -1,5 +1,4 @@
-import { createEditionService } from "./edition.service";
-
+import { createEditionService, getEditionsService } from "./edition.service";
 import {
 	type CreateEditionInput,
 	createEditionSchema,
@@ -46,6 +45,37 @@ export const createEditionHandler = async (req: Request): Promise<Response> => {
 				message: "Erreur serveur",
 			},
 			{ status: 500 },
+		);
+	}
+};
+
+// Affiche toutes les éditions
+export const getEditionsHandler = async (): Promise<Response> => {
+	try {
+		// Appel du service
+		const editions = await getEditionsService();
+
+		// Succès
+		return Response.json(
+			{
+				success: true,
+				data: editions,
+			},
+			{
+				status: 200,
+			},
+		);
+	} catch (error) {
+		console.error(error);
+
+		return Response.json(
+			{
+				success: false,
+				message: "Erreur serveur",
+			},
+			{
+				status: 500,
+			},
 		);
 	}
 };
