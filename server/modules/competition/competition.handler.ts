@@ -1,3 +1,4 @@
+import { asc } from "drizzle-orm";
 import db from "../../config/db";
 import { competition } from "../../schemas/competition";
 import {
@@ -67,6 +68,51 @@ export const createCompetitionHandler = async (
 			},
 			{
 				status: 201,
+			},
+		);
+	} catch (error) {
+		console.error(error);
+
+		return Response.json(
+			{
+				success: false,
+				message: "Erreur serveur",
+			},
+			{
+				status: 500,
+			},
+		);
+	}
+};
+
+// Récupère toutes les compétitions
+export const getCompetitionsHandler = async (): Promise<Response> => {
+	try {
+		// Liste des compétitions
+		const competitions = await db
+			.select({
+				id: competition.id,
+				name: competition.name,
+				logoUrl: competition.logoUrl,
+				createdAt: competition.createdAt,
+			})
+			.from(competition)
+
+			// Trie par nom
+			.orderBy(asc(competition.name))
+
+			// Pagination simple
+			.limit(10)
+			.offset(0);
+
+		// Succès
+		return Response.json(
+			{
+				success: true,
+				data: competitions,
+			},
+			{
+				status: 200,
 			},
 		);
 	} catch (error) {
