@@ -1,6 +1,7 @@
 import { serve } from "bun";
 import homepage from "../public/index.html";
 import { competitionRoutes } from "./modules/competition/competition.route";
+import { participationRoutes } from "./modules/participation/participation.route";
 import { teamRoutes } from "./modules/team/team.route";
 
 const server = serve({
@@ -11,6 +12,7 @@ const server = serve({
 		// Routes API
 		...teamRoutes,
 		...competitionRoutes,
+		...participationRoutes,
 	},
 
 	// Configuration pour le mode développement
