@@ -1,6 +1,4 @@
-import { asc } from "drizzle-orm";
-import db from "../../config/db";
-import { team } from "../../schemas/team";
+import { createTeamService, getTeamsService } from "./team.service";
 import { type CreateTeamInput, createTeamSchema } from "./team.validator";
 
 export const createTeamHandler = async (req: Request): Promise<Response> => {
@@ -26,21 +24,8 @@ export const createTeamHandler = async (req: Request): Promise<Response> => {
 
 		const data: CreateTeamInput = result.data;
 
-		// Insertion avec Drizzle
-		const insertedTeam = await db
-			.insert(team)
-			.values({
-				name: data.name,
-				logoUrl: data.logoUrl,
-			})
-
-			// Ignore si déjà existant
-			.onConflictDoNothing({
-				target: team.name,
-			})
-
-			// Retourne la ligne créée
-			.returning();
+		// Appel du service
+		const insertedTeam = await createTeamService(data);
 
 		// Vérifie si déjà existante
 		if (insertedTeam.length === 0) {
@@ -83,22 +68,8 @@ export const createTeamHandler = async (req: Request): Promise<Response> => {
 // Récupère toutes les équipes
 export const getTeamsHandler = async (): Promise<Response> => {
 	try {
-		// Liste des équipes
-		const teams = await db
-			.select({
-				id: team.id,
-				name: team.name,
-				logoUrl: team.logoUrl,
-				createdAt: team.createdAt,
-			})
-			.from(team)
-
-			// Trie par nom
-			.orderBy(asc(team.name))
-
-			// Pagination simple
-			.limit(10)
-			.offset(0);
+		// Appel du service
+		const teams = await getTeamsService();
 
 		// Succès
 		return Response.json(
