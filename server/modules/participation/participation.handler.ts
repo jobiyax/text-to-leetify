@@ -1,4 +1,7 @@
-import { addTeamsToCompetitionService } from "./participation.service";
+import {
+	addTeamsToCompetitionService,
+	getCompetitionTeamsService,
+} from "./participation.service";
 
 import {
 	type AddTeamsToCompetitionInput,
@@ -42,6 +45,57 @@ export const addTeamsToCompetitionHandler = async (
 			},
 			{
 				status: 201,
+			},
+		);
+	} catch (error) {
+		console.error(error);
+
+		return Response.json(
+			{
+				success: false,
+				message: "Erreur serveur",
+			},
+			{
+				status: 500,
+			},
+		);
+	}
+};
+
+// Affiche les équipes d'une compétition
+export const getCompetitionTeamsHandler = async (
+	req: Request,
+): Promise<Response> => {
+	try {
+		// Récupère l'id depuis l'URL
+		const url = new URL(req.url);
+
+		const competitionId = Number(url.searchParams.get("competitionId"));
+
+		// Vérifie l'id
+		if (!competitionId || Number.isNaN(competitionId)) {
+			return Response.json(
+				{
+					success: false,
+					message: "competitionId invalide",
+				},
+				{
+					status: 400,
+				},
+			);
+		}
+
+		// Appel du service
+		const teams = await getCompetitionTeamsService(competitionId);
+
+		// Succès
+		return Response.json(
+			{
+				success: true,
+				data: teams,
+			},
+			{
+				status: 200,
 			},
 		);
 	} catch (error) {
