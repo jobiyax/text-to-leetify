@@ -1,6 +1,7 @@
-import { asc } from "drizzle-orm";
-import db from "../../config/db";
-import { competition } from "../../schemas/competition";
+import {
+	createCompetitionService,
+	getCompetitionsService,
+} from "./competition.service";
 import {
 	type CreateCompetitionInput,
 	createCompetitionSchema,
@@ -31,21 +32,8 @@ export const createCompetitionHandler = async (
 
 		const data: CreateCompetitionInput = result.data;
 
-		// Insertion avec Drizzle
-		const insertedCompetition = await db
-			.insert(competition)
-			.values({
-				name: data.name,
-				logoUrl: data.logoUrl,
-			})
-
-			// Ignore si déjà existante
-			.onConflictDoNothing({
-				target: competition.name,
-			})
-
-			// Retourne la ligne créée
-			.returning();
+		// Appel du service
+		const insertedCompetition = await createCompetitionService(data);
 
 		// Vérifie si déjà existante
 		if (insertedCompetition.length === 0) {
@@ -88,22 +76,8 @@ export const createCompetitionHandler = async (
 // Récupère toutes les compétitions
 export const getCompetitionsHandler = async (): Promise<Response> => {
 	try {
-		// Liste des compétitions
-		const competitions = await db
-			.select({
-				id: competition.id,
-				name: competition.name,
-				logoUrl: competition.logoUrl,
-				createdAt: competition.createdAt,
-			})
-			.from(competition)
-
-			// Trie par nom
-			.orderBy(asc(competition.name))
-
-			// Pagination simple
-			.limit(10)
-			.offset(0);
+		// Appel du service
+		const competitions = await getCompetitionsService();
 
 		// Succès
 		return Response.json(
