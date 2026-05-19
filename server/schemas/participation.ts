@@ -6,7 +6,7 @@ import {
 	unique,
 } from "drizzle-orm/pg-core";
 
-import { competition } from "./competition";
+import { edition } from "./edition";
 import { team } from "./team";
 
 export const participation = pgTable(
@@ -14,10 +14,10 @@ export const participation = pgTable(
 	{
 		id: serial("id").primaryKey(),
 
-		// Référence vers competition
-		competitionId: integer("competition_id")
+		// Référence vers edition
+		editionId: integer("edition_id")
 			.notNull()
-			.references(() => competition.id, {
+			.references(() => edition.id, {
 				onDelete: "cascade",
 			}),
 
@@ -33,8 +33,8 @@ export const participation = pgTable(
 
 	// Empêche les doublons
 	(table) => ({
-		competitionTeamUnique: unique("participation_competition_team_unique").on(
-			table.competitionId,
+		editionTeamUnique: unique("participation_edition_team_unique").on(
+			table.editionId,
 			table.teamId,
 		),
 	}),
