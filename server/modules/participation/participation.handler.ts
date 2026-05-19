@@ -1,15 +1,15 @@
 import {
-	addTeamsToCompetitionService,
-	getCompetitionTeamsService,
+	addTeamsToEditionService,
+	getEditionTeamsService,
 } from "./participation.service";
 
 import {
-	type AddTeamsToCompetitionInput,
-	addTeamsToCompetitionSchema,
+	type AddTeamsToEditionInput,
+	addTeamsToEditionSchema,
 } from "./participation.validator";
 
-// Ajoute des équipes dans une compétition
-export const addTeamsToCompetitionHandler = async (
+// Ajoute des équipes dans une édition
+export const addTeamsToEditionHandler = async (
 	req: Request,
 ): Promise<Response> => {
 	try {
@@ -17,7 +17,7 @@ export const addTeamsToCompetitionHandler = async (
 		const body = await req.json();
 
 		// Validation Zod
-		const result = addTeamsToCompetitionSchema.safeParse(body);
+		const result = addTeamsToEditionSchema.safeParse(body);
 
 		// Vérifie les erreurs
 		if (!result.success) {
@@ -32,10 +32,10 @@ export const addTeamsToCompetitionHandler = async (
 			);
 		}
 
-		const data: AddTeamsToCompetitionInput = result.data;
+		const data: AddTeamsToEditionInput = result.data;
 
 		// Appel du service
-		const insertedParticipations = await addTeamsToCompetitionService(data);
+		const insertedParticipations = await addTeamsToEditionService(data);
 
 		// Succès
 		return Response.json(
@@ -62,22 +62,22 @@ export const addTeamsToCompetitionHandler = async (
 	}
 };
 
-// Affiche les équipes d'une compétition
-export const getCompetitionTeamsHandler = async (
+// Affiche les équipes d'une édition
+export const getEditionTeamsHandler = async (
 	req: Request,
 ): Promise<Response> => {
 	try {
 		// Récupère l'id depuis l'URL
 		const url = new URL(req.url);
 
-		const competitionId = Number(url.searchParams.get("competitionId"));
+		const editionId = Number(url.searchParams.get("editionId"));
 
 		// Vérifie l'id
-		if (!competitionId || Number.isNaN(competitionId)) {
+		if (!editionId || Number.isNaN(editionId)) {
 			return Response.json(
 				{
 					success: false,
-					message: "competitionId invalide",
+					message: "editionId invalide",
 				},
 				{
 					status: 400,
@@ -86,7 +86,7 @@ export const getCompetitionTeamsHandler = async (
 		}
 
 		// Appel du service
-		const teams = await getCompetitionTeamsService(competitionId);
+		const teams = await getEditionTeamsService(editionId);
 
 		// Succès
 		return Response.json(

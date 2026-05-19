@@ -1,16 +1,16 @@
 import {
-	addTeamsToCompetitionHandler,
-	getCompetitionTeamsHandler,
+	addTeamsToEditionHandler,
+	getEditionTeamsHandler,
 } from "./participation.handler";
 
 // Routes du module participation
 export const participationRoutes = {
 	"/api/participations": {
-		POST: addTeamsToCompetitionHandler,
+		POST: addTeamsToEditionHandler,
 	},
 
-	// Route pour récupérer les équipes d'une compétition
+	// Route pour récupérer les équipes d'une édition
 	"/api/participations/teams": {
-		GET: getCompetitionTeamsHandler,
+		GET: getEditionTeamsHandler,
 	},
 };

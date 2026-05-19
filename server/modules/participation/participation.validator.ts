@@ -1,13 +1,13 @@
 import { z } from "zod";
 
 // Validation des données de participation
-export const addTeamsToCompetitionSchema = z.object({
-	competitionId: z
+export const addTeamsToEditionSchema = z.object({
+	editionId: z
 		.number({
-			message: "L'identifiant de la compétition est requis",
+			message: "L'identifiant de l'édition est requis",
 		})
-		.int("L'identifiant de la compétition doit être un entier")
-		.positive("L'identifiant de la compétition doit être positif"),
+		.int("L'identifiant de l'édition doit être un entier")
+		.positive("L'identifiant de l'édition doit être positif"),
 
 	teamIds: z
 		.array(
@@ -24,6 +24,4 @@ export const addTeamsToCompetitionSchema = z.object({
 });
 
 // Type TypeScript automatique
-export type AddTeamsToCompetitionInput = z.infer<
-	typeof addTeamsToCompetitionSchema
->;
+export type AddTeamsToEditionInput = z.infer<typeof addTeamsToEditionSchema>;

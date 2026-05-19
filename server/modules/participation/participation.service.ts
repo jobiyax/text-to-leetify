@@ -1,20 +1,20 @@
 import { eq } from "drizzle-orm";
 import db from "../../config/db";
-import { competition } from "../../schemas/competition";
+import { edition } from "../../schemas/edition";
 import { participation } from "../../schemas/participation";
 import { team } from "../../schemas/team";
 
-type AddTeamsToCompetitionInput = {
-	competitionId: number;
+type AddTeamsToEditionInput = {
+	editionId: number;
 	teamIds: number[];
 };
 
-// Ajoute plusieurs équipes dans une compétition
-export const addTeamsToCompetitionService = async (
-	data: AddTeamsToCompetitionInput,
+// Ajoute plusieurs équipes dans une édition
+export const addTeamsToEditionService = async (
+	data: AddTeamsToEditionInput,
 ) => {
 	const values = data.teamIds.map((teamId) => ({
-		competitionId: data.competitionId,
+		editionId: data.editionId,
 		teamId,
 	}));
 
@@ -30,16 +30,15 @@ export const addTeamsToCompetitionService = async (
 	return insertedParticipations;
 };
 
-// Récupère les équipes d'une compétition
-export const getCompetitionTeamsService = async (competitionId: number) => {
+// Récupère les équipes d'une édition
+export const getEditionTeamsService = async (editionId: number) => {
 	const teams = await db
 		.select({
 			participationId: participation.id,
 
-			competition: {
-				id: competition.id,
-				name: competition.name,
-				logoUrl: competition.logoUrl,
+			edition: {
+				id: edition.id,
+				number: edition.number,
 			},
 
 			team: {
@@ -52,11 +51,14 @@ export const getCompetitionTeamsService = async (competitionId: number) => {
 		})
 		.from(participation)
 
-		.innerJoin(competition, eq(participation.competitionId, competition.id))
+		// Jointure edition
+		.innerJoin(edition, eq(participation.editionId, edition.id))
 
+		// Jointure team
 		.innerJoin(team, eq(participation.teamId, team.id))
 
-		.where(eq(participation.competitionId, competitionId));
+		// Filtre par édition
+		.where(eq(participation.editionId, editionId));
 
 	return teams;
 };
