@@ -1,5 +1,13 @@
+LEET = str.maketrans("ABEGILOSTZabegilostz", "48361105724836110572")
+
+
+def leetify(text):
+    return text.translate(LEET)
+
+
 def main():
-    print("Hello from Text To Leetify !")
+    text = input("Texte à convertir : ")
+    print(leetify(text))
 
 
 if __name__ == "__main__":
