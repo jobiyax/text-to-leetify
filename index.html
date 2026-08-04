@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Text to Leet</title>
+  </head>
+  <body>
+    <h1>Text to Leet</h1>
+    <label>
+      Niveau :
+      <select id="level">
+        <option value="0">1. Basique</option>
+        <option value="1">2. Normal</option>
+        <option value="2">3. Élevé</option>
+      </select>
+    </label>
+    <br /><br />
+    <label>
+      Texte :
+      <textarea id="input" rows="5" cols="40"></textarea>
+    </label>
+    <p id="output"></p>
+
+    <script>
+      // Cartographie lettre -> leet, identique à index.ts
+      const LEET = [
+        { A: "4", E: "3", I: "1", O: "0", S: "5", T: "7" },
+        {
+          A: "4",
+          B: "8",
+          C: "(",
+          E: "3",
+          G: "6",
+          I: "1",
+          L: "1",
+          O: "0",
+          R: "|2",
+          S: "5",
+          T: "7",
+          Z: "2",
+        },
+        {
+          A: "4",
+          B: "8",
+          C: "(",
+          D: "|)",
+          E: "3",
+          F: "|=",
+          G: "6",
+          H: "#",
+          I: "1",
+          J: "_|",
+          K: "|<",
+          L: "1",
+          M: "|\\/|",
+          N: "||",
+          O: "0",
+          P: "|>",
+          Q: "0_",
+          R: "|2",
+          S: "5",
+          T: "7",
+          U: "|_|",
+          V: "\\/",
+          W: "\\/\\/",
+          X: "><",
+          Y: "`/",
+          Z: "2",
+        },
+      ];
+
+      const input = document.getElementById("input");
+      const level = document.getElementById("level");
+      const output = document.getElementById("output");
+
+      function convert() {
+        const map = LEET[level.value];
+        // Garde les caractères non mappés (espaces, ponctuation)
+        output.textContent = [...input.value]
+          .map((c) => map[c.toUpperCase()] ?? c)
+          .join("");
+      }
+
+      input.addEventListener("input", convert);
+      level.addEventListener("change", convert);
+    </script>
+  </body>
+</html>
