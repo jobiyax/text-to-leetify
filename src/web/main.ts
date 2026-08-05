@@ -5,6 +5,9 @@ const direction = document.getElementById("direction") as HTMLSelectElement;
 const level = document.getElementById("level") as HTMLSelectElement;
 const output = document.getElementById("output") as HTMLElement;
 const copy = document.getElementById("copy") as HTMLButtonElement;
+const year = document.getElementById("year") as HTMLElement;
+
+year.textContent = String(new Date().getFullYear());
 
 function convert() {
   const selected = LEVELS[Number(level.value)];

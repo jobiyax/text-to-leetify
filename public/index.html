@@ -7,35 +7,49 @@
     <link rel="stylesheet" href="../src/web/style.css" />
   </head>
   <body>
-    <img src="text-to-leetif.webp" width="300" alt="Text to Leet" />
-    <a href="https://github.com/jobiyax/text-to-leetify" target="_blank">
-      <img
-        src="https://img.shields.io/github/stars/jobiyax/text-to-leetify"
-        alt="Étoiles GitHub"
-      />
-    </a>
-    <label>
-      Direction :
-      <select id="direction">
-        <option value="to">Texte → leet</option>
-        <option value="from">Leet → texte</option>
-      </select>
-    </label>
-    <label>
-      Niveau :
-      <select id="level">
-        <option value="0">1. Basique</option>
-        <option value="1">2. Normal</option>
-        <option value="2">3. Élevé</option>
-      </select>
-    </label>
-    <br /><br />
-    <label>
-      Texte :
-      <textarea id="input" rows="5" cols="40"></textarea>
-    </label>
-    <p id="output"></p>
-    <button id="copy">Copier</button>
+    <header>
+      <nav>
+        <img src="text-to-leetif.webp" width="180" alt="Text to Leet" />
+        <a href="https://github.com/jobiyax/text-to-leetify" target="_blank">
+          <img
+            src="https://img.shields.io/github/stars/jobiyax/text-to-leetify"
+            alt="Étoiles GitHub"
+          />
+        </a>
+      </nav>
+    </header>
+
+    <main>
+      <p class="description">
+        Convertis ton texte en Leet Speak 1337 et inversement en temps réel.
+      </p>
+      <label>
+        Direction :
+        <select id="direction">
+          <option value="to">Texte → leet</option>
+          <option value="from">Leet → texte</option>
+        </select>
+      </label>
+      <label>
+        Niveau :
+        <select id="level">
+          <option value="0">1. Basique</option>
+          <option value="1">2. Normal</option>
+          <option value="2">3. Élevé</option>
+        </select>
+      </label>
+      <br /><br />
+      <label>
+        Texte :
+        <textarea id="input" rows="5" cols="40"></textarea>
+      </label>
+      <p id="output"></p>
+      <button id="copy">Copier</button>
+    </main>
+
+    <footer>
+      <p>&copy; <span id="year"></span> Text To Leetif</p>
+    </footer>
 
     <script type="module" src="../src/web/main.ts"></script>
   </body>
