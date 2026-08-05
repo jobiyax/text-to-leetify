@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { fromLeet, toLeet } from "./index.ts";
+import { fromLeet, toLeet } from "./leet.ts";
 
 describe("toLeet", () => {
   test("basic", () => {

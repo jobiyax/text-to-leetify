@@ -1,4 +1,4 @@
-type Level = "basic" | "normal" | "high";
+export type Level = "basic" | "normal" | "high";
 
 // Cartographie lettre -> leet pour chaque niveau
 const LEET: Record<Level, Record<string, string>> = {
@@ -82,22 +82,4 @@ export function fromLeet(text: string, level: Level): string {
   }
   // Première lettre en majuscule, le reste en minuscule
   return result.charAt(0).toUpperCase() + result.slice(1).toLowerCase();
-}
-
-if (import.meta.main) {
-  const direction = prompt("1 = texte → leet, 2 = leet → texte ? ");
-  if (direction !== "1" && direction !== "2") {
-    console.error("Direction invalide. Choisis 1 ou 2.");
-    process.exit(1);
-  }
-
-  const levelInput = prompt("Niveau (1 = basic, 2 = normal, 3 = high) ? ");
-  const level = LEVELS[Number(levelInput) - 1];
-  if (!level) {
-    console.error("Niveau invalide. Choisis 1, 2 ou 3.");
-    process.exit(1);
-  }
-
-  const text = prompt("Texte : ") ?? "";
-  console.log(direction === "1" ? toLeet(text, level) : fromLeet(text, level));
 }

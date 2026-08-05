@@ -1,4 +1,4 @@
-import { LEVELS, fromLeet, toLeet } from "./index.ts";
+import { LEVELS, fromLeet, toLeet } from "../leet.ts";
 
 const input = document.getElementById("input") as HTMLTextAreaElement;
 const direction = document.getElementById("direction") as HTMLSelectElement;

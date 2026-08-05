@@ -1,9 +1,12 @@
 {
   "name": "text-to-leetif",
-  "module": "index.ts",
+  "module": "src/leet.ts",
   "type": "module",
   "private": true,
   "scripts": {
+    "start": "bun ./public/index.html",
+    "cli": "bun run src/cli.ts",
+    "test": "bun test",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier . --write",
