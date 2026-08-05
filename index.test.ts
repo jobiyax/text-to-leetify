@@ -6,10 +6,10 @@ describe("toLeet", () => {
     expect(toLeet("Hello World", "basic")).toBe("H3ll0 W0rld");
   });
   test("normal", () => {
-    expect(toLeet("Leet Speak", "normal")).toBe("1337 5p34k");
+    expect(toLeet("Leet Speak", "normal")).toBe("|_337 5p34k");
   });
   test("high", () => {
-    expect(toLeet("Elite Coder", "high")).toBe("31173 (0|)3|2");
+    expect(toLeet("Elite Coder", "high")).toBe("3|_173 (0|)3|2");
   });
   test("garde les caractères non mappés", () => {
     expect(toLeet("Hello, World!", "basic")).toBe("H3ll0, W0rld!");
@@ -21,9 +21,9 @@ describe("fromLeet", () => {
     expect(fromLeet("H3ll0 W0rld", "basic")).toBe("Hello world");
   });
   test("normal", () => {
-    expect(fromLeet("1337 5p34k", "normal")).toBe("Ieet speak");
+    expect(fromLeet("|_337 5p34k", "normal")).toBe("Leet speak");
   });
   test("high matche le plus long d'abord", () => {
-    expect(fromLeet("31173 (0|)3|2", "high")).toBe("Eiite coder");
+    expect(fromLeet("3|_173 (0|)3|2", "high")).toBe("Elite coder");
   });
 });

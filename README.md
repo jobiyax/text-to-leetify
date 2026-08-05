@@ -23,7 +23,7 @@ Trois niveaux sont disponibles : plus le niveau est élevé, plus de lettres son
 | I      | 1          | 1         | 1        |
 | J      | J          | J         | \_\|     |
 | K      | K          | K         | \|<      |
-| L      | L          | 1         | 1        |
+| L      | L          | \|_       | \|_      |
 | M      | M          | M         | \|\/\|   |
 | N      | N          | N         | \|\|     |
 | O      | 0          | 0         | 0        |
