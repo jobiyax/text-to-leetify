@@ -2,6 +2,7 @@
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Text to Leet</title>
     <link rel="icon" href="./favicon.ico" />
     <link rel="stylesheet" href="../src/web/style.css" />
@@ -9,43 +10,59 @@
   <body>
     <header>
       <nav>
-        <img src="text-to-leetif.webp" width="180" alt="Text to Leet" />
-        <button id="theme">Mode sombre</button>
-        <a href="https://github.com/jobiyax/text-to-leetify" target="_blank">
-          <img
-            src="https://img.shields.io/github/stars/jobiyax/text-to-leetify"
-            alt="Étoiles GitHub"
-          />
-        </a>
+        <img
+          class="logo"
+          src="text-to-leetif.webp"
+          height="36"
+          alt="Text to Leet"
+        />
+        <div class="nav-actions">
+          <a
+            class="btn-git"
+            href="https://github.com/jobiyax/text-to-leetify"
+            target="_blank"
+            title="Étoiles sur GitHub"
+          >
+            <img
+              src="https://img.shields.io/github/stars/jobiyax/text-to-leetify"
+              alt="Étoiles GitHub"
+            />
+          </a>
+          <button id="theme" class="btn">Mode sombre</button>
+        </div>
       </nav>
     </header>
 
     <main>
       <p class="description">
-        Convertis ton texte en Leet Speak 1337 et inversement en temps réel.
+        Convertis ton texte en Leet Speak 1337 et inversement en temps réel
       </p>
-      <label>
-        Direction :
-        <select id="direction">
-          <option value="to">Texte → leet</option>
-          <option value="from">Leet → texte</option>
-        </select>
-      </label>
-      <label>
-        Niveau :
-        <select id="level">
-          <option value="0">1. Basique</option>
-          <option value="1">2. Normal</option>
-          <option value="2">3. Élevé</option>
-        </select>
-      </label>
-      <br /><br />
-      <label>
-        Texte :
-        <textarea id="input" rows="5" cols="40"></textarea>
-      </label>
-      <p id="output"></p>
-      <button id="copy">Copier</button>
+
+      <div class="controls">
+        <label>
+          Direction :
+          <select id="direction">
+            <option value="to">Texte → leet</option>
+            <option value="from">Leet → texte</option>
+          </select>
+        </label>
+        <label>
+          Niveau :
+          <select id="level">
+            <option value="0">1. Basique</option>
+            <option value="1">2. Normal</option>
+            <option value="2">3. Élevé</option>
+          </select>
+        </label>
+      </div>
+
+      <textarea
+        id="input"
+        rows="5"
+        placeholder="Écris ton texte ici…"
+      ></textarea>
+      <p id="output" class="output"></p>
+      <button id="copy" class="btn">Copier</button>
     </main>
 
     <footer>
