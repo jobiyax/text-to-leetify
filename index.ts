@@ -80,7 +80,8 @@ export function fromLeet(text: string, level: Level): string {
       i++;
     }
   }
-  return result;
+  // Première lettre en majuscule, le reste en minuscule
+  return result.charAt(0).toUpperCase() + result.slice(1).toLowerCase();
 }
 
 if (import.meta.main) {
