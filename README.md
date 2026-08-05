@@ -1,4 +1,4 @@
-<img src="text-to-leetif.webp" width="300">
+<img src="public/text-to-leetif.webp" width="300">
 
 Outil open source qui convertit du texte en Leet Speak (1337) en remplaçant les lettres par leurs équivalents les plus courants tout en conservant le texte lisible.
 
