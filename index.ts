@@ -55,14 +55,48 @@ export function toLeet(text: string, level: Level): string {
   return [...text].map((c) => map[c.toUpperCase()] ?? c).join("");
 }
 
+// Map inverse lettre <- leet, clés triées par longueur décroissante pour
+// matcher "|2" avant "|", "0_" avant "0", etc.
+const REVERSE: Record<Level, [string, string][]> = Object.fromEntries(
+  (Object.keys(LEET) as Level[]).map((level) => [
+    level,
+    Object.entries(LEET[level])
+      .map(([letter, leet]) => [leet, letter] as [string, string])
+      .sort(([a], [b]) => b.length - a.length),
+  ]),
+) as Record<Level, [string, string][]>;
+
+export function fromLeet(text: string, level: Level): string {
+  const map = REVERSE[level];
+  let result = "";
+  let i = 0;
+  while (i < text.length) {
+    const [leet, letter] = map.find(([leet]) => text.startsWith(leet, i)) ?? [];
+    if (leet) {
+      result += letter;
+      i += leet.length;
+    } else {
+      result += text.charAt(i);
+      i++;
+    }
+  }
+  return result;
+}
+
 if (import.meta.main) {
-  const input = prompt("Niveau (1 = basic, 2 = normal, 3 = high) ? ");
-  const level = LEVELS[Number(input) - 1];
+  const direction = prompt("1 = texte → leet, 2 = leet → texte ? ");
+  if (direction !== "1" && direction !== "2") {
+    console.error("Direction invalide. Choisis 1 ou 2.");
+    process.exit(1);
+  }
+
+  const levelInput = prompt("Niveau (1 = basic, 2 = normal, 3 = high) ? ");
+  const level = LEVELS[Number(levelInput) - 1];
   if (!level) {
     console.error("Niveau invalide. Choisis 1, 2 ou 3.");
     process.exit(1);
   }
 
-  const text = prompt("Texte à convertir : ") ?? "";
-  console.log(toLeet(text, level));
+  const text = prompt("Texte : ") ?? "";
+  console.log(direction === "1" ? toLeet(text, level) : fromLeet(text, level));
 }
