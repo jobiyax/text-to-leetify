@@ -47,7 +47,7 @@ const LEET: Record<Level, Record<string, string>> = {
   },
 };
 
-const LEVELS: Level[] = ["basic", "normal", "high"];
+export const LEVELS: Level[] = ["basic", "normal", "high"];
 
 export function toLeet(text: string, level: Level): string {
   const map = LEET[level];
