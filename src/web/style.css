@@ -1,3 +1,15 @@
+:root {
+  --bg: #ffffff;
+  --text: #1f2937;
+  --border: #ccc;
+}
+
+[data-theme="dark"] {
+  --bg: #18202e;
+  --text: #e5e7eb;
+  --border: #334155;
+}
+
 body {
   font-family:
     ui-monospace, "Cascadia Code", "SF Mono", Menlo, Consolas,
@@ -6,6 +18,8 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
 }
 
 nav {
@@ -15,13 +29,21 @@ nav {
   padding: 1rem;
 }
 
+textarea,
+select,
+button {
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
 main {
   padding: 1rem;
   flex: 1;
 }
 
 footer {
-  border-top: 1px solid #ccc;
+  border-top: 1px solid var(--border);
   padding: 1rem;
   text-align: center;
 }

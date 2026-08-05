@@ -6,8 +6,24 @@ const level = document.getElementById("level") as HTMLSelectElement;
 const output = document.getElementById("output") as HTMLElement;
 const copy = document.getElementById("copy") as HTMLButtonElement;
 const year = document.getElementById("year") as HTMLElement;
+const theme = document.getElementById("theme") as HTMLButtonElement;
 
 year.textContent = String(new Date().getFullYear());
+
+function applyTheme(dark: boolean) {
+  document.documentElement.dataset.theme = dark ? "dark" : "light";
+  theme.textContent = dark ? "Mode clair" : "Mode sombre";
+}
+
+const saved = localStorage.getItem("theme");
+const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+applyTheme(saved ? saved === "dark" : prefersDark);
+
+theme.addEventListener("click", () => {
+  const dark = document.documentElement.dataset.theme !== "dark";
+  localStorage.setItem("theme", dark ? "dark" : "light");
+  applyTheme(dark);
+});
 
 function convert() {
   const selected = LEVELS[Number(level.value)];
