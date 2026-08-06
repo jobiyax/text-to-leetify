@@ -1,6 +1,15 @@
 <img src="public/text-to-leetif.webp" width="300">
 
-Outil open source qui convertit du texte en Leet Speak (1337) en remplaçant les lettres par leurs équivalents les plus courants tout en conservant le texte lisible.
+# Text to Leetif
+
+Le Leet Speak (1337) remplace les lettres par des chiffres et des symboles qui leur ressemblent. Text to Leetif convertit automatiquement ton texte en Leet Speak et inversement, en restant lisible : seuls les caractères mappés changent.
+
+## Fonctionnalités
+
+- Conversion texte vers leet et leet vers texte
+- Trois niveaux de remplacement, du plus sobre au plus complet
+- Interface web en temps réel, avec thème sombre et copie en un clic
+- CLI interactive pour convertir depuis le terminal
 
 ## Niveaux de Leet Speak
 
@@ -44,3 +53,43 @@ Exemples :
 - Basique : `Hello World` → `H3ll0 W0rld`
 - Normal : `Leet Speak` → `133t 5p3ak`
 - Élevé : `Elite Coder` → `3l173 (0d3r`
+
+## Installation
+
+Prérequis : [Bun](https://bun.sh).
+
+```bash
+git clone https://github.com/jobiyax/text-to-leetify.git
+cd text-to-leetify
+bun install
+```
+
+## Utilisation
+
+Interface web : `bun run start` puis ouvre l'adresse affichée.
+
+CLI : `bun run cli`, puis réponds aux questions (direction, niveau, texte).
+
+```
+1 = texte → leet, 2 = leet → texte ? 1
+Niveau (1 = basic, 2 = normal, 3 = high) ? 2
+Texte : Leet Speak
+|_337 5p34k
+```
+
+## Développement
+
+| Commande         | Description                             |
+| ---------------- | --------------------------------------- |
+| `bun run test`   | Lancer les tests (`bun:test`)           |
+| `bun run lint`   | Vérifier le lint (ESLint)               |
+| `bun run format` | Formater le projet (Prettier `--write`) |
+| `bun run build`  | Builder la page web dans `dist/`        |
+
+## Contribuer
+
+Consulte [CONTRIBUTING.md](CONTRIBUTING.md) pour les conventions de branches, de commits et le workflow avant de soumettre une pull request.
+
+## Licence
+
+Distribué sous licence MIT. Voir [LICENSE](LICENSE).
