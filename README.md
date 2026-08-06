@@ -1,7 +1,5 @@
 <img src="public/text-to-leetif.webp" width="300">
 
-# Text to Leetif
-
 Le Leet Speak (1337) remplace les lettres par des chiffres et des symboles qui leur ressemblent. Text to Leetif convertit automatiquement ton texte en Leet Speak et inversement, en restant lisible : seuls les caractères mappés changent.
 
 ## Fonctionnalités
