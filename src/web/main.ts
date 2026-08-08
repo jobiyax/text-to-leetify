@@ -1,8 +1,6 @@
 import { LEVELS, fromLeet, toLeet } from "../leet.ts";
 
 const input = document.getElementById("input") as HTMLTextAreaElement;
-const direction = document.getElementById("direction") as HTMLSelectElement;
-const level = document.getElementById("level") as HTMLSelectElement;
 const output = document.getElementById("output") as HTMLElement;
 const copy = document.getElementById("copy") as HTMLButtonElement;
 const year = document.getElementById("year") as HTMLElement;
@@ -14,6 +12,12 @@ const iconMoon = document.querySelector<SVGSVGElement>(
   "#icon-moon",
 ) as SVGSVGElement;
 const starCount = document.getElementById("star-count") as HTMLSpanElement;
+const direction = document.getElementById("direction") as HTMLDetailsElement;
+const directionLabel = document.getElementById(
+  "direction-label",
+) as HTMLSpanElement;
+const level = document.getElementById("level") as HTMLDetailsElement;
+const levelLabel = document.getElementById("level-label") as HTMLSpanElement;
 
 year.textContent = String(new Date().getFullYear());
 
@@ -47,18 +51,38 @@ theme.addEventListener("click", () => {
   applyTheme(dark);
 });
 
+function initSelect(details: HTMLDetailsElement, label: HTMLSpanElement) {
+  details.querySelectorAll("[data-value]").forEach((option) => {
+    option.addEventListener("click", () => {
+      const value = (option as HTMLElement).dataset.value;
+      if (!value) return;
+      details.dataset.value = value;
+      label.textContent = option.textContent;
+      details.open = false;
+      convert();
+    });
+  });
+  details.addEventListener("toggle", () => {
+    if (!details.open) return;
+    for (const other of [direction, level]) {
+      if (other !== details) other.open = false;
+    }
+  });
+}
+
+initSelect(direction, directionLabel);
+initSelect(level, levelLabel);
+
 function convert() {
-  const selected = LEVELS[Number(level.value)];
+  const selected = LEVELS[Number(level.dataset.value)];
   if (!selected) return;
   output.textContent =
-    direction.value === "to"
+    direction.dataset.value === "to"
       ? toLeet(input.value, selected)
       : fromLeet(input.value, selected);
 }
 
 input.addEventListener("input", convert);
-direction.addEventListener("change", convert);
-level.addEventListener("change", convert);
 
 copy.addEventListener("click", async () => {
   if (!output.textContent) return;

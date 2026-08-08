@@ -91,31 +91,93 @@
       </p>
 
       <div class="flex flex-col gap-4 sm:flex-row sm:gap-6">
-        <label
+        <div
           class="flex flex-1 flex-col gap-1.5 text-sm text-zinc-600 dark:text-zinc-300"
         >
           Direction
-          <select
-            id="direction"
-            class="w-full cursor-pointer rounded-none border border-zinc-300 bg-white px-3 py-2 text-zinc-900 focus-visible:ring-2 focus-visible:ring-zinc-500 focus-visible:outline-none dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:focus-visible:ring-zinc-400"
-          >
-            <option value="to">Texte → leet</option>
-            <option value="from">Leet → texte</option>
-          </select>
-        </label>
-        <label
+          <details id="direction" data-value="to" class="group relative">
+            <summary
+              class="flex cursor-pointer list-none items-center justify-between gap-2 rounded-none border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900 focus-visible:ring-2 focus-visible:ring-zinc-500 focus-visible:outline-none dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:focus-visible:ring-zinc-400 [&::-webkit-details-marker]:hidden"
+            >
+              <span id="direction-label">Texte → leet</span>
+              <svg
+                class="h-4 w-4 transition-transform group-open:rotate-180"
+                viewBox="0 0 256 256"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  d="m213.66 101.66-80 80a8 8 0 0 1-11.32 0l-80-80a8 8 0 0 1 11.32-11.32L128 164.69l74.34-74.35a8 8 0 0 1 11.32 11.32"
+                />
+              </svg>
+            </summary>
+            <div
+              class="absolute z-10 mt-1 w-full rounded-none border border-zinc-300 bg-white shadow-lg dark:border-zinc-700 dark:bg-zinc-900"
+            >
+              <button
+                type="button"
+                data-value="to"
+                class="w-full px-3 py-2 text-left text-sm text-zinc-900 hover:bg-zinc-200 dark:text-zinc-100 dark:hover:bg-zinc-800"
+              >
+                Texte → leet
+              </button>
+              <button
+                type="button"
+                data-value="from"
+                class="w-full px-3 py-2 text-left text-sm text-zinc-900 hover:bg-zinc-200 dark:text-zinc-100 dark:hover:bg-zinc-800"
+              >
+                Leet → texte
+              </button>
+            </div>
+          </details>
+        </div>
+        <div
           class="flex flex-1 flex-col gap-1.5 text-sm text-zinc-600 dark:text-zinc-300"
         >
           Niveau
-          <select
-            id="level"
-            class="w-full cursor-pointer rounded-none border border-zinc-300 bg-white px-3 py-2 text-zinc-900 focus-visible:ring-2 focus-visible:ring-zinc-500 focus-visible:outline-none dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:focus-visible:ring-zinc-400"
-          >
-            <option value="0">1. Basique</option>
-            <option value="1">2. Normal</option>
-            <option value="2">3. Élevé</option>
-          </select>
-        </label>
+          <details id="level" data-value="0" class="group relative">
+            <summary
+              class="flex cursor-pointer list-none items-center justify-between gap-2 rounded-none border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900 focus-visible:ring-2 focus-visible:ring-zinc-500 focus-visible:outline-none dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:focus-visible:ring-zinc-400 [&::-webkit-details-marker]:hidden"
+            >
+              <span id="level-label">1. Basique</span>
+              <svg
+                class="h-4 w-4 transition-transform group-open:rotate-180"
+                viewBox="0 0 256 256"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  d="m213.66 101.66-80 80a8 8 0 0 1-11.32 0l-80-80a8 8 0 0 1 11.32-11.32L128 164.69l74.34-74.35a8 8 0 0 1 11.32 11.32"
+                />
+              </svg>
+            </summary>
+            <div
+              class="absolute z-10 mt-1 w-full rounded-none border border-zinc-300 bg-white shadow-lg dark:border-zinc-700 dark:bg-zinc-900"
+            >
+              <button
+                type="button"
+                data-value="0"
+                class="w-full px-3 py-2 text-left text-sm text-zinc-900 hover:bg-zinc-200 dark:text-zinc-100 dark:hover:bg-zinc-800"
+              >
+                1. Basique
+              </button>
+              <button
+                type="button"
+                data-value="1"
+                class="w-full px-3 py-2 text-left text-sm text-zinc-900 hover:bg-zinc-200 dark:text-zinc-100 dark:hover:bg-zinc-800"
+              >
+                2. Normal
+              </button>
+              <button
+                type="button"
+                data-value="2"
+                class="w-full px-3 py-2 text-left text-sm text-zinc-900 hover:bg-zinc-200 dark:text-zinc-100 dark:hover:bg-zinc-800"
+              >
+                3. Élevé
+              </button>
+            </div>
+          </details>
+        </div>
       </div>
 
       <textarea
