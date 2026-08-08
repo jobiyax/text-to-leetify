@@ -11,48 +11,72 @@
     <link rel="icon" href="./favicon.ico" />
     <link rel="stylesheet" href="../src/web/style.css" />
   </head>
-  <body>
-    <header>
-      <nav>
+  <body
+    class="flex min-h-screen flex-col bg-zinc-50 font-mono text-zinc-900 transition-colors dark:bg-zinc-950 dark:text-zinc-100"
+  >
+    <header
+      class="border-b border-zinc-300 bg-white dark:border-zinc-800 dark:bg-zinc-900"
+    >
+      <nav
+        class="mx-auto flex max-w-3xl flex-wrap items-center justify-between gap-3 px-4 py-3"
+      >
         <img
-          class="logo"
+          class="h-9 w-auto"
           src="text-to-leetif.webp"
           height="36"
           alt="Text to Leet"
         />
-        <div class="nav-actions">
+        <div class="flex items-center gap-3">
           <a
-            class="btn-git"
+            class="flex items-center rounded-none border border-zinc-300 hover:border-zinc-500 dark:border-zinc-700 dark:hover:border-zinc-400"
             href="https://github.com/jobiyax/text-to-leetify"
             target="_blank"
             title="Étoiles sur GitHub"
           >
             <img
+              class="block"
               src="https://img.shields.io/github/stars/jobiyax/text-to-leetify"
               alt="Étoiles GitHub"
             />
           </a>
-          <button id="theme" class="btn">Mode sombre</button>
+          <button
+            id="theme"
+            class="cursor-pointer rounded-none border border-zinc-300 px-3 py-1.5 text-sm hover:bg-zinc-200 focus-visible:ring-2 focus-visible:ring-zinc-500 focus-visible:outline-none dark:border-zinc-700 dark:hover:bg-zinc-800 dark:focus-visible:ring-zinc-400"
+          >
+            Mode sombre
+          </button>
         </div>
       </nav>
     </header>
 
-    <main>
-      <p class="description">
+    <main class="mx-auto flex w-full max-w-xl flex-1 flex-col gap-5 px-4 py-10">
+      <p
+        class="text-center text-sm leading-relaxed text-zinc-500 dark:text-zinc-400"
+      >
         Convertis ton texte en Leet Speak 1337 et inversement en temps réel
       </p>
 
-      <div class="controls">
-        <label>
-          Direction :
-          <select id="direction">
+      <div class="flex flex-col gap-4 sm:flex-row sm:gap-6">
+        <label
+          class="flex flex-1 flex-col gap-1.5 text-sm text-zinc-600 dark:text-zinc-300"
+        >
+          Direction
+          <select
+            id="direction"
+            class="w-full cursor-pointer rounded-none border border-zinc-300 bg-white px-3 py-2 text-zinc-900 focus-visible:ring-2 focus-visible:ring-zinc-500 focus-visible:outline-none dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:focus-visible:ring-zinc-400"
+          >
             <option value="to">Texte → leet</option>
             <option value="from">Leet → texte</option>
           </select>
         </label>
-        <label>
-          Niveau :
-          <select id="level">
+        <label
+          class="flex flex-1 flex-col gap-1.5 text-sm text-zinc-600 dark:text-zinc-300"
+        >
+          Niveau
+          <select
+            id="level"
+            class="w-full cursor-pointer rounded-none border border-zinc-300 bg-white px-3 py-2 text-zinc-900 focus-visible:ring-2 focus-visible:ring-zinc-500 focus-visible:outline-none dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:focus-visible:ring-zinc-400"
+          >
             <option value="0">1. Basique</option>
             <option value="1">2. Normal</option>
             <option value="2">3. Élevé</option>
@@ -64,12 +88,25 @@
         id="input"
         rows="5"
         placeholder="Écris ton texte ici…"
+        class="min-h-36 w-full resize-y rounded-none border border-zinc-300 bg-white px-3 py-2 text-zinc-900 placeholder-zinc-400 focus-visible:ring-2 focus-visible:ring-zinc-500 focus-visible:outline-none dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:placeholder-zinc-500 dark:focus-visible:ring-zinc-400"
       ></textarea>
-      <p id="output" class="output"></p>
-      <button id="copy" class="btn">Copier</button>
+
+      <p
+        id="output"
+        class="min-h-12 w-full rounded-none border border-dashed border-zinc-400 px-3 py-3 leading-relaxed wrap-break-word dark:border-zinc-600"
+      ></p>
+
+      <button
+        id="copy"
+        class="w-full cursor-pointer rounded-none bg-zinc-900 px-4 py-2.5 text-white hover:bg-zinc-700 focus-visible:ring-2 focus-visible:ring-zinc-500 focus-visible:outline-none sm:w-auto sm:self-end dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-300 dark:focus-visible:ring-zinc-400"
+      >
+        Copier
+      </button>
     </main>
 
-    <footer>
+    <footer
+      class="border-t border-zinc-300 px-4 py-4 text-center text-xs text-zinc-500 dark:border-zinc-800 dark:text-zinc-400"
+    >
       <p>&copy; <span id="year"></span> Text To Leetif</p>
     </footer>
 
