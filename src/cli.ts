@@ -1,7 +1,7 @@
 import { LEVELS, fromLeet, toLeet } from "./leet.ts";
 
 if (import.meta.main) {
-  const direction = prompt("1 = texte → leet, 2 = leet → texte ? ");
+  const direction = prompt("1 = texte vers leet, 2 = leet vers texte ? ");
   if (direction !== "1" && direction !== "2") {
     console.error("Direction invalide. Choisis 1 ou 2.");
     process.exit(1);

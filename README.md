@@ -13,8 +13,8 @@ Le Leet Speak (1337) remplace les lettres par des chiffres et des symboles qui l
 
 Trois niveaux sont disponibles : plus le niveau est élevé, plus de lettres sont remplacées.
 
-- **Basique** : seulement les chiffres les plus connus (A→4, E→3, I→1, O→0, S→5, T→7).
-- **Normal** : ajoute quelques équivalents simples (B→8, C→(, G→6, L→1, R→|2, Z→2).
+- **Basique** : seulement les chiffres les plus connus (A vers 4, E vers 3, I vers 1, O vers 0, S vers 5, T vers 7).
+- **Normal** : ajoute quelques équivalents simples (B vers 8, C vers (, G vers 6, L vers 1, R vers |2, Z vers 2).
 - **Élevé** : couvre tout l'alphabet avec des caractères simples et lisibles.
 
 | Lettre | 1. Basique | 2. Normal | 3. Élevé |
@@ -48,9 +48,9 @@ Trois niveaux sont disponibles : plus le niveau est élevé, plus de lettres son
 
 Exemples :
 
-- Basique : `Hello World` → `H3ll0 W0rld`
-- Normal : `Leet Speak` → `133t 5p3ak`
-- Élevé : `Elite Coder` → `3l173 (0d3r`
+- Basique : `Hello World` vers `H3ll0 W0rld`
+- Normal : `Leet Speak` vers `133t 5p3ak`
+- Élevé : `Elite Coder` vers `3l173 (0d3r`
 
 ## Installation
 
@@ -69,7 +69,7 @@ Interface web : `bun run start` puis ouvre l'adresse affichée.
 CLI : `bun run cli`, puis réponds aux questions (direction, niveau, texte).
 
 ```
-1 = texte → leet, 2 = leet → texte ? 1
+1 = texte vers leet, 2 = leet vers texte ? 1
 Niveau (1 = basic, 2 = normal, 3 = high) ? 2
 Texte : Leet Speak
 |_337 5p34k
@@ -77,12 +77,13 @@ Texte : Leet Speak
 
 ## Développement
 
-| Commande         | Description                             |
-| ---------------- | --------------------------------------- |
-| `bun run test`   | Lancer les tests (`bun:test`)           |
-| `bun run lint`   | Vérifier le lint (ESLint)               |
-| `bun run format` | Formater le projet (Prettier `--write`) |
-| `bun run build`  | Builder la page web dans `dist/`        |
+| Commande          | Description                               |
+| ----------------- | ----------------------------------------- |
+| `bun run test`    | Lancer les tests (`bun:test`)             |
+| `bun run lint`    | Vérifier le lint (ESLint)                 |
+| `bun run format`  | Formater le projet (Prettier `--write`)   |
+| `bun run build`   | Builder la page web dans `dist/`          |
+| `bun run preview` | Builder puis servir le build dans `dist/` |
 
 ## Contribuer
 
