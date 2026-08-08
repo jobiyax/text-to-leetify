@@ -7,12 +7,34 @@ const output = document.getElementById("output") as HTMLElement;
 const copy = document.getElementById("copy") as HTMLButtonElement;
 const year = document.getElementById("year") as HTMLElement;
 const theme = document.getElementById("theme") as HTMLButtonElement;
+const iconSun = document.querySelector<SVGSVGElement>(
+  "#icon-sun",
+) as SVGSVGElement;
+const iconMoon = document.querySelector<SVGSVGElement>(
+  "#icon-moon",
+) as SVGSVGElement;
+const starCount = document.getElementById("star-count") as HTMLSpanElement;
 
 year.textContent = String(new Date().getFullYear());
 
+const formatCount = new Intl.NumberFormat("en", {
+  notation: "compact",
+  maximumFractionDigits: 1,
+});
+
+fetch("https://api.github.com/repos/jobiyax/text-to-leetify")
+  .then((response) => (response.ok ? response.json() : null))
+  .then((data) => {
+    if (!data) return;
+    starCount.textContent = formatCount.format(data.stargazers_count);
+    starCount.classList.remove("hidden");
+  })
+  .catch(() => {});
+
 function applyTheme(dark: boolean) {
   document.documentElement.dataset.theme = dark ? "dark" : "light";
-  theme.textContent = dark ? "Mode clair" : "Mode sombre";
+  iconSun.classList.toggle("hidden", dark);
+  iconMoon.classList.toggle("hidden", !dark);
 }
 
 const saved = localStorage.getItem("theme");
