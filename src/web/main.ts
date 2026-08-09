@@ -5,12 +5,8 @@ const output = document.getElementById("output") as HTMLElement;
 const copy = document.getElementById("copy") as HTMLButtonElement;
 const year = document.getElementById("year") as HTMLElement;
 const theme = document.getElementById("theme") as HTMLButtonElement;
-const iconSun = document.querySelector<SVGSVGElement>(
-  "#icon-sun",
-) as SVGSVGElement;
-const iconMoon = document.querySelector<SVGSVGElement>(
-  "#icon-moon",
-) as SVGSVGElement;
+const iconSun = document.getElementById("icon-sun") as HTMLImageElement;
+const iconMoon = document.getElementById("icon-moon") as HTMLImageElement;
 const starCount = document.getElementById("star-count") as HTMLSpanElement;
 const direction = document.getElementById("direction") as HTMLDetailsElement;
 const directionLabel = document.getElementById(
