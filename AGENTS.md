@@ -27,9 +27,9 @@ Filtrer les tests : `bun test -t <nom>` par nom, `bun test <chemin>` par fichier
 - `src/leet.ts` — logique métier : `toLeet`, `fromLeet`, `LEVELS`, type `Level`
 - `src/leet.test.ts` — tests co-localisés
 - `src/cli.ts` — CLI interactive
-- `src/web/main.ts` — logique de la page web (conversion temps réel, thème, compteur d'étoiles, dropdowns custom)
+- `src/web/main.ts` — logique de la page web (conversion temps réel, thème, bouton copier, compteur d'étoiles, dropdowns custom)
 - `src/web/style.css` — point d'entrée Tailwind (`@import "tailwindcss"`, `@theme`, `@font-face`, `@custom-variant dark`)
-- `public/index.html` — page web source (classes Tailwind, servie par `bun run start`)
+- `public/index.html` — page web source (classes Tailwind + script inline du thème dans le `<head>`, servie par `bun run start`)
 - `public/fonts/` — polices Space Mono (woff2), inlinées en base64 dans le build
 - `build.ts` — build : `Bun.build` + `bun-plugin-tailwind`, sortie `dist/index.html` (fichier autonome, tout inliné)
 - `bunfig.toml` — config du dev server (`[serve.static]` + plugin Tailwind)
@@ -50,10 +50,10 @@ Filtrer les tests : `bun test -t <nom>` par nom, `bun test <chemin>` par fichier
 ### Web (Tailwind CSS v4)
 
 - Tous les styles sont des classes Tailwind dans `public/index.html`, aucun CSS custom (sauf Tailwind directives).
-- Dark mode : `@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *))`, toggle via `data-theme` sur `<html>` dans `main.ts`.
+- Dark mode : `@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *))`, `data-theme` sur `<html>`. Le thème initial est posé par un script inline dans le `<head>` de `public/index.html` (anti-flash clair) ; le toggle et les icônes vivent dans `main.ts`.
 - Police par défaut : Space Mono via `@theme { --font-mono: ... }`, chargée par `@font-face` et inlinée en base64 par le build.
 - Dropdowns custom : `<details>`/`<summary>` avec `data-value` + `[&::-webkit-details-marker]:hidden`, logique dans `initSelect` (`main.ts`).
-- Icônes Phosphor inlinées en SVG (`fill="currentColor"`), identifiées `ph:...`.
+- Icônes Phosphor via webfont `@phosphor-icons/web` (import CSS `@import "@phosphor-icons/web/regular"` dans `src/web/style.css`), utilisées en classes `<i class="ph ph-nom" aria-hidden="true"></i>`.
 
 ### Build
 

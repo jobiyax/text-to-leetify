@@ -1,5 +1,5 @@
 {
-  "name": "text-to-leetif",
+  "name": "text-to-leetify",
   "module": "src/leet.ts",
   "type": "module",
   "private": true,
@@ -27,5 +27,8 @@
   },
   "peerDependencies": {
     "typescript": "^5"
+  },
+  "dependencies": {
+    "@phosphor-icons/web": "^2.1.2"
   }
 }

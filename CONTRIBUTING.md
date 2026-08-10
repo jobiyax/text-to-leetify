@@ -4,7 +4,7 @@ Merci de contribuer au projet. Suis ces quelques règles simples.
 
 ## Workflow
 
-1. Crée une branche depuis `main` : `type/description` (2 à 3 mots).
+1. Crée une branche depuis `main` : `type/description-en-kebab-case` (2 à 3 mots).
    Types : `feat/`, `fix/`, `docs/`, `style/`, `refactor/`, `chore/`, `test/`.
 2. Fais tes modifications en suivant les conventions du projet.
 3. Lance `bun run lint` puis `bun run format` jusqu'à zéro erreur.
@@ -14,6 +14,8 @@ Merci de contribuer au projet. Suis ces quelques règles simples.
 ## Messages de commit
 
 Format : `type: description` (2 à 5 mots, minuscules, impératif, sans point final).
+
+Types : `feat`, `fix`, `docs`, `style`, `refactor`, `chore`, `test`, `ci`.
 
 Exemple : `feat: add copy result button`
 

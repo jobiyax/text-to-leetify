@@ -1,6 +1,6 @@
-<img src="public/text-to-leetif.webp" width="300">
+<img src="public/text-to-leetify.webp" width="300">
 
-Le Leet Speak (1337) remplace les lettres par des chiffres et des symboles qui leur ressemblent. Text to Leetif convertit automatiquement ton texte en Leet Speak et inversement, en restant lisible : seuls les caractères mappés changent.
+Le Leet Speak (1337) remplace les lettres par des chiffres et des symboles qui leur ressemblent. Text to Leetify convertit automatiquement ton texte en Leet Speak et inversement, en restant lisible : seuls les caractères mappés changent.
 
 ## Fonctionnalités
 
@@ -14,7 +14,7 @@ Le Leet Speak (1337) remplace les lettres par des chiffres et des symboles qui l
 Trois niveaux sont disponibles : plus le niveau est élevé, plus de lettres sont remplacées.
 
 - **Basique** : seulement les chiffres les plus connus (A vers 4, E vers 3, I vers 1, O vers 0, S vers 5, T vers 7).
-- **Normal** : ajoute quelques équivalents simples (B vers 8, C vers (, G vers 6, L vers 1, R vers |2, Z vers 2).
+- **Normal** : ajoute quelques équivalents simples (B vers 8, C vers (, G vers 6, L vers |_, R vers |2, Z vers 2).
 - **Élevé** : couvre tout l'alphabet avec des caractères simples et lisibles.
 
 | Lettre | 1. Basique | 2. Normal | 3. Élevé |
@@ -49,8 +49,8 @@ Trois niveaux sont disponibles : plus le niveau est élevé, plus de lettres son
 Exemples :
 
 - Basique : `Hello World` vers `H3ll0 W0rld`
-- Normal : `Leet Speak` vers `133t 5p3ak`
-- Élevé : `Elite Coder` vers `3l173 (0d3r`
+- Normal : `Leet Speak` vers `|_337 5p34k`
+- Élevé : `Elite Coder` vers `3|_173 (0|)3|2`
 
 ## Installation
 
